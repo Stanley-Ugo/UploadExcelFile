@@ -35,6 +35,9 @@ namespace UploadExcelFile.Controllers
                 filePath = path + Path.GetFileName(postedFile.FileName);
                 string extension = Path.GetExtension(postedFile.FileName);
                 postedFile.SaveAs(filePath);
+
+                //Read the contents of CSV file.
+                string csvData = System.IO.File.ReadAllText(filePath);
             }
         }
     }
