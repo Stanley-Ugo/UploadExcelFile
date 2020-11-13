@@ -55,7 +55,10 @@ namespace UploadExcelFile.Controllers
                         });
                     }
                 }
+
             }
+
+            return View(contact);
         }
     }
 }
