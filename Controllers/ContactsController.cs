@@ -28,6 +28,10 @@ namespace UploadExcelFile.Controllers
             if (postedFile != null)
             {
                 string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
             }
         }
     }
