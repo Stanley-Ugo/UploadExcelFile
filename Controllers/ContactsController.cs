@@ -16,14 +16,19 @@ namespace UploadExcelFile.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            
+            return View(new List<Contact>());
         }
 
         //POST: Contacts
         [HttpPost]
-        public ActionResult Index()
+        public ActionResult Index(HttpPostedFileBase postedFile)
         {
+            List<Contact> contact = new List<Contact>();
+            string filePath = string.Empty;
+            if (postedFile != null)
+            {
 
+            }
         }
     }
 }
