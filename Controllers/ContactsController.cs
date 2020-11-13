@@ -32,6 +32,9 @@ namespace UploadExcelFile.Controllers
                 {
                     Directory.CreateDirectory(path);
                 }
+                filePath = path + Path.GetFileName(postedFile.FileName);
+                string extension = Path.GetExtension(postedFile.FileName);
+                postedFile.SaveAs(filePath);
             }
         }
     }
