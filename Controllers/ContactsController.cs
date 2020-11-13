@@ -27,7 +27,7 @@ namespace UploadExcelFile.Controllers
             string filePath = string.Empty;
             if (postedFile != null)
             {
-
+                string path = Server.MapPath("~/Uploads/");
             }
         }
     }
