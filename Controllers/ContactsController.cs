@@ -38,6 +38,23 @@ namespace UploadExcelFile.Controllers
 
                 //Read the contents of CSV file.
                 string csvData = System.IO.File.ReadAllText(filePath);
+
+                //Execute a loop over the rows.
+                foreach (string row in csvData.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                        contact.Add(new Contact
+                        {
+                            FirstName = row.Split(',')[0], //Convert.ToInt32(row.Split(',')[0]),
+                            LastName = row.Split(',')[1],
+                            Email = row.Split(',')[2],
+                            Telephone = row.Split(',')[3],
+                            Mobile = row.Split(',')[4],
+                            CompanyID = Convert.ToInt32(row.Split(',')[5])
+                        });
+                    }
+                }
             }
         }
     }
