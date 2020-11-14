@@ -70,7 +70,7 @@ namespace UploadExcelFile.Controllers
         private void PostToDatabase(List<Contact> contact)
         {
             //ADO>NET CODE connection string
-
+            TempData["Message"] = "No File Chosen";
 
         }
     }
