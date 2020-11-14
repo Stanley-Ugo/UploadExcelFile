@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using UploadExcelFile.Models;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace UploadExcelFile.Controllers
 {
@@ -87,7 +90,12 @@ namespace UploadExcelFile.Controllers
 
                             });
 
-                            this.PostToDatabase(contact);
+                            //checking for nulls befor posting to Database
+                            if (firstName != string.Empty && lastName != string.Empty && email != string.Empty && mobile != string.Empty && companyId == 7)
+                            {
+                                this.PostToDatabase(firstName, lastName, email, telephone, mobile, companyId);
+                                TempData["Message2"] = "Upload Successful";
+                            }
                         }
                     }
                 }
@@ -102,11 +110,61 @@ namespace UploadExcelFile.Controllers
             return View(contact);
         }
 
-        private void PostToDatabase(List<Contact> contact)
+        private void PostToDatabase(string firstName,
+            string lastName, string email, string telephone, string mobile, int companyID)
         {
-            //ADO>NET CODE connection string
-            
+            string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                SqlCommand cmd = new SqlCommand("spCreateContact", con);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlParameter paramFirstName = new SqlParameter
+                {
+                    ParameterName = "@FirstName",
+                    Value = firstName
+                };
+                cmd.Parameters.Add(paramFirstName);
+
+                SqlParameter paramLastName = new SqlParameter
+                {
+                    ParameterName = "@LastName",
+                    Value = lastName
+                };
+                cmd.Parameters.Add(paramLastName);
+
+                SqlParameter paramEmail = new SqlParameter
+                {
+                    ParameterName = "@Email",
+                    Value = email
+                };
+                cmd.Parameters.Add(paramEmail);
+
+                SqlParameter paramTelephone = new SqlParameter
+                {
+                    ParameterName = "@Telephone",
+                    Value = telephone
+                };
+                cmd.Parameters.Add(paramTelephone);
+
+                SqlParameter paramMobile = new SqlParameter
+                {
+                    ParameterName = "@Mobile",
+                    Value = mobile
+                };
+                cmd.Parameters.Add(paramMobile);
+
+                SqlParameter paramCompanyID = new SqlParameter
+                {
+                    ParameterName = "@CompanyID",
+                    Value = companyID
+                };
+                cmd.Parameters.Add(paramCompanyID);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+            }
         }
     }
 }
