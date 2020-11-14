@@ -55,7 +55,7 @@ namespace UploadExcelFile.Controllers
                             CompanyID = Convert.ToInt32(row.Split(',')[5])
                         });
 
-                        //this.PostToDatabase(contact);
+                        this.PostToDatabase(contact);
                     }
                 }
             }
