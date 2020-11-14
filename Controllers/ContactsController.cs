@@ -58,24 +58,39 @@ namespace UploadExcelFile.Controllers
 
                             //Checking then first Name field
                             if (firstName == string.Empty)
+                            {
                                 TempData["Message"] = "First Name Field can not be Empty";
+                                return View("Error", TempData["Message4"] = "First Name can not be null!! ");
+                            }
 
                             //checking the Last Name field
                             if (lastName == string.Empty)
+                            {
                                 TempData["Message"] = "Last Name Field can not be Empty";
+                                return View("Error", TempData["Message4"] = "Last Name can not be null!!");
+                            }
                             
 
                             //checking for email field
                             if (email == string.Empty)
+                            {
                                 TempData["Message"] = "Email Field can not be Empty";
+                                return View("Error", TempData["Message4"] = "Email Name can not be null!!");
+                            }
 
                             //checking for Mobile
                             if (mobile == string.Empty)
+                            {
                                 TempData["Message"] = "Mobile Field can not be Empty";
+                                return View("Error", TempData["Message4"] = "Mobile can not be null!!");
+                            }
 
                             //checking for Valid Company Id
                             if (companyId != 7)
-                                TempData["Message"] = "Invalid COmpany ID";
+                            {
+                                TempData["Message"] = "Invalid Company Id.";
+                                return View("Error", TempData["Message4"] = "Invalid Company iD!!! ");
+                            }
 
 
                             contact.Add(new Contact
