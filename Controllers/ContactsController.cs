@@ -42,37 +42,6 @@ namespace UploadExcelFile.Controllers
                 //Execute a loop over the rows.
                 foreach (string row in csvData.Split('\n'))
                 {
-                    //Checking for the first Name field
-                    if (string.IsNullOrEmpty(row.Split(',')[0]))
-                    {
-                        TempData["Message"] = "First Name Field is Missing";
-                    }
-
-                    //checking for Last Name Field
-                    if (string.IsNullOrEmpty(row.Split(',')[1]))
-                    {
-                        TempData["Message"] = "Last Name Field is Missing";
-                    }
-
-                    //Checking for Email Field
-                    if (string.IsNullOrEmpty(row.Split(',')[2]))
-                    {
-                        TempData["Message"] = "Email Field is Missing";
-                    }
-
-                    //checking for Mobile field
-                    if (string.IsNullOrEmpty(row.Split(',')[0]))
-                    {
-                        TempData["Message"] = "Mobile Field is Missing";
-                    }
-
-                    //Checking for a valid companyID
-                    int companyid = Convert.ToInt32(row.Split(',')[5]);
-                    if (companyid != 7 )
-                    {
-                        TempData["Message"] = "Invalid Company ID";
-                    }
-
                     if (!string.IsNullOrEmpty(row))
                     {
 
@@ -85,10 +54,10 @@ namespace UploadExcelFile.Controllers
                             Mobile = row.Split(',')[4],
                             CompanyID = Convert.ToInt32(row.Split(',')[5])
                         });
+
+                        this.PostToDatabase(contact);
                     }
                 }
-                
-
             }
             else
             {
@@ -96,6 +65,12 @@ namespace UploadExcelFile.Controllers
             }
 
             return View(contact);
+        }
+
+        private void PostToDatabase(List<Contact> contact)
+        {
+            //ADO>NET CODE connection string
+
         }
     }
 }
