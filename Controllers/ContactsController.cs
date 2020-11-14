@@ -42,8 +42,40 @@ namespace UploadExcelFile.Controllers
                 //Execute a loop over the rows.
                 foreach (string row in csvData.Split('\n'))
                 {
+                    //Checking for the first Name field
+                    if (string.IsNullOrEmpty(row.Split(',')[0]))
+                    {
+                        TempData["Message"] = "First Name Field is Missing";
+                    }
+
+                    //checking for Last Name Field
+                    if (string.IsNullOrEmpty(row.Split(',')[1]))
+                    {
+                        TempData["Message"] = "Last Name Field is Missing";
+                    }
+
+                    //Checking for Email Field
+                    if (string.IsNullOrEmpty(row.Split(',')[2]))
+                    {
+                        TempData["Message"] = "Email Field is Missing";
+                    }
+
+                    //checking for Mobile field
+                    if (string.IsNullOrEmpty(row.Split(',')[0]))
+                    {
+                        TempData["Message"] = "Mobile Field is Missing";
+                    }
+
+                    //Checking for a valid companyID
+                    int companyid = Convert.ToInt32(row.Split(',')[5]);
+                    if (companyid != 7 )
+                    {
+                        TempData["Message"] = "Invalid Company ID";
+                    }
+
                     if (!string.IsNullOrEmpty(row))
                     {
+
                         contact.Add(new Contact
                         {
                             FirstName = row.Split(',')[0], //Convert.ToInt32(row.Split(',')[0]),
@@ -55,7 +87,12 @@ namespace UploadExcelFile.Controllers
                         });
                     }
                 }
+                
 
+            }
+            else
+            {
+                TempData["Message"] = "No File Chosen";
             }
 
             return View(contact);
