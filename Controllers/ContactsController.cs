@@ -57,6 +57,7 @@ namespace UploadExcelFile.Controllers
                             if (contactVM.FirstName == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
+                                contactVM.Reason = "First Name field can not be empty";
                                 //TempData["Message"] = "First Name Field can not be Empty";
                                 //return View("Error", TempData["Message4"] = "First Name can not be null!! ");
                             }
@@ -65,6 +66,7 @@ namespace UploadExcelFile.Controllers
                             if (contactVM.LastName == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
+                                contactVM.Reason = "Last Name field can not be empty";
                                 //TempData["Message"] = "Last Name Field can not be Empty";
                                 //return View("Error", TempData["Message4"] = "Last Name can not be null!!");
                             }
@@ -73,6 +75,7 @@ namespace UploadExcelFile.Controllers
                             if (contactVM.Email == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
+                                contactVM.Reason = "Email field can not be empty";
                                 //TempData["Message"] = "Email Field can not be Empty";
                                 //return View("Error", TempData["Message4"] = "Email Name can not be null!!");
                             }
@@ -81,6 +84,7 @@ namespace UploadExcelFile.Controllers
                             if (contactVM.Mobile == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
+                                contactVM.Reason = "Mobile field can not be empty";
                                 //TempData["Message"] = "Mobile Field can not be Empty";
                                 //return View("Error", TempData["Message4"] = "Mobile can not be null!!");
                             }
@@ -89,6 +93,7 @@ namespace UploadExcelFile.Controllers
                             if (contactVM.CompanyID != 7)
                             {
                                 contactVM.Status = "Invalid";
+                                contactVM.Reason = "Invalid Company iD";
                                 //TempData["Message"] = "Invalid Company Id.";
                                 //return View("Error", TempData["Message4"] = "Invalid Company iD!!! ");
                             }
