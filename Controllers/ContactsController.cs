@@ -5,9 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UploadExcelFile.Models;
+using System.Web.SessionState;
+using System.Web.Services;
 
 namespace UploadExcelFile.Controllers
 {
+    [SessionState(SessionStateBehavior.Required)]
     public class ContactsController : Controller
     {
         // GET: Contacts
@@ -19,6 +22,7 @@ namespace UploadExcelFile.Controllers
 
         //POST: Contacts
         [HttpPost]
+        [WebMethod(EnableSession = true)]
         public ActionResult Index(HttpPostedFileBase postedFile)
         {
             List<ContactVM> contact = new List<ContactVM>();
@@ -57,36 +61,28 @@ namespace UploadExcelFile.Controllers
                             if (contactVM.FirstName == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
-                                contactVM.Reason = "First Name field can not be empty";
-                                //TempData["Message"] = "First Name Field can not be Empty";
-                                //return View("Error", TempData["Message4"] = "First Name can not be null!! ");
+                                contactVM.Reason = "First Name field is required";
                             }
 
                             //checking the Last Name field
                             if (contactVM.LastName == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
-                                contactVM.Reason = "Last Name field can not be empty";
-                                //TempData["Message"] = "Last Name Field can not be Empty";
-                                //return View("Error", TempData["Message4"] = "Last Name can not be null!!");
+                                contactVM.Reason = "Last Name field is required";
                             }
                             
                             //checking for email field
                             if (contactVM.Email == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
-                                contactVM.Reason = "Email field can not be empty";
-                                //TempData["Message"] = "Email Field can not be Empty";
-                                //return View("Error", TempData["Message4"] = "Email Name can not be null!!");
+                                contactVM.Reason = "Email field is required";
                             }
 
                             //checking for Mobile
                             if (contactVM.Mobile == string.Empty)
                             {
                                 contactVM.Status = "Invalid";
-                                contactVM.Reason = "Mobile field can not be empty";
-                                //TempData["Message"] = "Mobile Field can not be Empty";
-                                //return View("Error", TempData["Message4"] = "Mobile can not be null!!");
+                                contactVM.Reason = "Mobile field is required";
                             }
 
                             //checking for Valid Company Id
@@ -94,8 +90,6 @@ namespace UploadExcelFile.Controllers
                             {
                                 contactVM.Status = "Invalid";
                                 contactVM.Reason = "Invalid Company iD";
-                                //TempData["Message"] = "Invalid Company Id.";
-                                //return View("Error", TempData["Message4"] = "Invalid Company iD!!! ");
                             }
 
                             contact.Add(contactVM);
@@ -108,9 +102,20 @@ namespace UploadExcelFile.Controllers
                     TempData["Message"] = "Something went wrong " + ex.Message;
                 }
             }
-           //Seession object
-   
+            //Seession object
+            Session["Upload"] = contact;
+
             return View(contact);
+        }
+
+        [HttpGet]
+        [WebMethod(EnableSession = true)]
+        public ActionResult CreateContact()
+        {
+            List<ContactVM> contacts = new List<ContactVM>();
+            contacts = (List<ContactVM>)Session["Upload"];
+            ContactDB.PostToDatabase(contacts);
+            return View(contacts);
         }
     }
 }

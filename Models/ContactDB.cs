@@ -10,12 +10,12 @@ namespace UploadExcelFile.Models
 {
     public class ContactDB
     {
-        public static void PostToDatabase(List<Contact> contacts)
+        public static void PostToDatabase(List<ContactVM> contacts)
         {
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connString))
             {
-                foreach (Contact contact in contacts)
+                foreach (ContactVM contact in contacts)
                 {
                     SqlCommand cmd = new SqlCommand("spCreateContact", con);
                     cmd.CommandType = CommandType.StoredProcedure;
