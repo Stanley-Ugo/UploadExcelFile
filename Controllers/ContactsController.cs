@@ -110,7 +110,7 @@ namespace UploadExcelFile.Controllers
 
         [HttpGet]
         [WebMethod(EnableSession = true)]
-        public ActionResult CreateContact()
+        public ActionResult ContactsTable()
         {
             List<ContactVM> contacts = new List<ContactVM>();
             contacts = (List<ContactVM>)Session["Upload"];
