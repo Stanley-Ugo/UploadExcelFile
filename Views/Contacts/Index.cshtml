@@ -1,5 +1,5 @@
 ﻿@using UploadExcelFile.Models
-@model IEnumerable<Contact>
+@model IEnumerable<ContactVM>
 @{
     Layout = null;
 }
@@ -24,8 +24,10 @@
             <td>Telephone</td>
             <td>Mobile</td>
             <td>CompanyID</td>
+            <td>Status</td>
+            <td>Reason</td>
         </tr>
-        @foreach (Contact contact in Model)
+        @foreach (ContactVM contact in Model)
         {
             <tr>
                 <td>@contact.FirstName</td>
@@ -34,7 +36,13 @@
                 <td>@contact.Telephone</td>
                 <td>@contact.Mobile</td>
                 <td>@contact.CompanyID</td>
+                <td>@contact.Status</td>
+                <td>@contact.Reason</td>
+                
             </tr>
         }
+
     </table>
+    <button>Proceed</button>
+
 }
