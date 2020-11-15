@@ -10,7 +10,7 @@ namespace UploadExcelFile.Models
 {
     public class ContactDB
     {
-        private void PostToDatabase(List<Contact> contacts)
+        public static void PostToDatabase(List<Contact> contacts)
         {
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connString))
