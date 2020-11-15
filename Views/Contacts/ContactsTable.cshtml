@@ -4,38 +4,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Count() > 0)
-{
-    <hr />
-    <table cellpadding="0" cellspacing="0" border="1">
+<hr />
+<table cellpadding="0" cellspacing="0" border="1" class="table table-bordered">
+    <tr>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>Email</td>
+        <td>Telephone</td>
+        <td>Mobile</td>
+        <td>CompanyID</td>
+    </tr>
+
+    @foreach (ContactVM contact in Model)
+    {
         <tr>
-            <td>FirstName</td>
-            <td>LastName</td>
-            <td>Email</td>
-            <td>Telephone</td>
-            <td>Mobile</td>
-            <td>CompanyID</td>
-            <td>Status</td>
-            <td>Reason</td>
+            <td>@contact.FirstName</td>
+            <td>@contact.LastName</td>
+            <td>@contact.Email</td>
+            <td>@contact.Telephone</td>
+            <td>@contact.Mobile</td>
+            <td>@contact.CompanyID</td>
         </tr>
-        @foreach (ContactVM contact in Model)
-        {
-            <tr>
-                <td>@contact.FirstName</td>
-                <td>@contact.LastName</td>
-                <td>@contact.Email</td>
-                <td>@contact.Telephone</td>
-                <td>@contact.Mobile</td>
-                <td>@contact.CompanyID</td>
-                <td>@contact.Status</td>
-                <td>@contact.Reason</td>
 
-            </tr>
-        }
 
-    </table>
-    <br />
-    <button onclick='window.location.href = @Url.Action("Index", "InsertRecords")'>Proceed</button>
-    <button style="margin-left:527px;" id="cancel" onclick='window.location.href = @Url.Action("Index", "Home")'>Cancel</button>
-
-}
+    }
+</table>
+<button class="btn btn-default">
+    @Html.ActionLink("Back To Home", "Index", "Contacts")
+</button> 
