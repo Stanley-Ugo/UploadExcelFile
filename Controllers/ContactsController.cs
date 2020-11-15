@@ -17,6 +17,7 @@ namespace UploadExcelFile.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            Session.Clear();
             return View(new List<ContactVM>());
         }
 
