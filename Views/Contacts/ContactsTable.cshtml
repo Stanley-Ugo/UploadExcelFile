@@ -35,23 +35,7 @@
 
     </table>
     <br />
-    
+    <button onclick='window.location.href = @Url.Action("Index", "InsertRecords")'>Proceed</button>
+    <button style="margin-left:527px;" id="cancel" onclick='window.location.href = @Url.Action("Index", "Home")'>Cancel</button>
 
-    <br />
-    <hr />
 }
-
-
-<br />
-<br />
-<form asp-controller="Contacts" asp-action="Index" method="Post" enctype="multipart/form-data">
-    <input type="file" name="postedFile" />
-    <hr />
-    <input id="import" type="submit" value="import" />
-    <input type="reset" value="Cancel" style="margin-left:527px;" />
-</form>
-
-
-
-<h3 style="color: red;"><strong>@TempData["Message"]</strong></h3>
-<h3 style="color: green;"><strong>@TempData["Message2"]</strong></h3>

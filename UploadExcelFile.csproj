@@ -200,9 +200,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\Error.cshtml" />
+    <Content Include="Views\Contacts\ContactsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Files\" />
+    <Folder Include="Views\InsertRecords\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
