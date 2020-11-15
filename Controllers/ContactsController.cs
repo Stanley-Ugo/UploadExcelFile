@@ -109,6 +109,7 @@ namespace UploadExcelFile.Controllers
             return View(contact);
         }
 
+        //Post Method to the Database
         [HttpGet]
         [WebMethod(EnableSession = true)]
         public ActionResult ContactsTable()
