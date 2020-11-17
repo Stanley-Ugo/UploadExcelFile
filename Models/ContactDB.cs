@@ -17,53 +17,64 @@ namespace UploadExcelFile.Models
             {
                 foreach (ContactVM contact in contacts)
                 {
-                    SqlCommand cmd = new SqlCommand("spCreateContact", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    SqlParameter paramFirstName = new SqlParameter
+                    try
                     {
-                        ParameterName = "@FirstName",
-                        Value = contact.FirstName
-                    };
-                    cmd.Parameters.Add(paramFirstName);
+                        SqlCommand cmd = new SqlCommand("spCreateContact", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlParameter paramLastName = new SqlParameter
+                        SqlParameter paramFirstName = new SqlParameter
+                        {
+                            ParameterName = "@FirstName",
+                            Value = contact.FirstName
+                        };
+                        cmd.Parameters.Add(paramFirstName);
+
+                        SqlParameter paramLastName = new SqlParameter
+                        {
+                            ParameterName = "@LastName",
+                            Value = contact.LastName
+                        };
+                        cmd.Parameters.Add(paramLastName);
+
+                        SqlParameter paramEmail = new SqlParameter
+                        {
+                            ParameterName = "@Email",
+                            Value = contact.Email
+                        };
+                        cmd.Parameters.Add(paramEmail);
+
+                        SqlParameter paramTelephone = new SqlParameter
+                        {
+                            ParameterName = "@Telephone",
+                            Value = contact.Telephone
+                        };
+                        cmd.Parameters.Add(paramTelephone);
+
+                        SqlParameter paramMobile = new SqlParameter
+                        {
+                            ParameterName = "@Mobile",
+                            Value = contact.Mobile
+                        };
+                        cmd.Parameters.Add(paramMobile);
+
+                        SqlParameter paramCompanyID = new SqlParameter
+                        {
+                            ParameterName = "@CompanyID",
+                            Value = contact.CompanyID
+                        };
+                        cmd.Parameters.Add(paramCompanyID);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch(Exception ex)
                     {
-                        ParameterName = "@LastName",
-                        Value = contact.LastName
-                    };
-                    cmd.Parameters.Add(paramLastName);
-
-                    SqlParameter paramEmail = new SqlParameter
+                        throw ex;
+                    }
+                    finally
                     {
-                        ParameterName = "@Email",
-                        Value = contact.Email
-                    };
-                    cmd.Parameters.Add(paramEmail);
-
-                    SqlParameter paramTelephone = new SqlParameter
-                    {
-                        ParameterName = "@Telephone",
-                        Value = contact.Telephone
-                    };
-                    cmd.Parameters.Add(paramTelephone);
-
-                    SqlParameter paramMobile = new SqlParameter
-                    {
-                        ParameterName = "@Mobile",
-                        Value = contact.Mobile
-                    };
-                    cmd.Parameters.Add(paramMobile);
-
-                    SqlParameter paramCompanyID = new SqlParameter
-                    {
-                        ParameterName = "@CompanyID",
-                        Value = contact.CompanyID
-                    };
-                    cmd.Parameters.Add(paramCompanyID);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
                 }
 
             }
