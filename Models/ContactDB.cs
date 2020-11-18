@@ -10,6 +10,10 @@ namespace UploadExcelFile.Models
 {
     public class ContactDB
     {
+        public static int GetBatchID()
+        {
+
+        }
         public static void PostToDatabase(List<ContactVM> contacts)
         {
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
