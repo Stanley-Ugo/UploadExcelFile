@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using UploadExcelFile.Models;
 using System.Web.SessionState;
 using System.Web.Services;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace UploadExcelFile.Controllers
 {
@@ -114,9 +116,17 @@ namespace UploadExcelFile.Controllers
         [WebMethod(EnableSession = true)]
         public ActionResult ContactsTable()
         {
+            //Creating a new Batch object
+            ContactBatch batch = new ContactBatch();
+            batch.BatchName = "Upload";
+            batch.CreatedBy = "Sysytem";
+            batch.DateCreated = DateTime.Now;
+            //calling the post to ContactBatch table
+            int batchID = ContactDB.GetBatchID(batch);
+
             List<ContactVM> contacts = new List<ContactVM>();
             contacts = (List<ContactVM>)Session["Upload"];
-            ContactDB.PostToDatabase(contacts);
+            ContactDB.PostToDatabase(contacts, batchID);
             return View(contacts);
         }
     }

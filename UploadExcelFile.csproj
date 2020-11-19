@@ -157,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactBatch.cs" />
     <Compile Include="Models\ContactDB.cs" />
     <Compile Include="Models\ContactVM.cs" />
     <Compile Include="Models\Contact.cs" />
