@@ -56,8 +56,15 @@ namespace UploadExcelFile.Models
                     };
                     cmd.Parameters.Add(paramStatus);
 
+                    SqlParameter outputParam = new SqlParameter();
+                    outputParam.ParameterName = "@BatchID";
+                    outputParam.Direction = ParameterDirection.Output;
+                    outputParam.SqlDbType = SqlDbType.Int;
+                    cmd.Parameters.Add(outputParam);
+
                     con.Open();
-                    batchID = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.ExecuteNonQuery();
+                    batchID = Convert.ToInt32(cmd.Parameters["@BatchID"].Value);
                 }
                 catch(Exception ex)
                 {

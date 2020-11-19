@@ -116,11 +116,14 @@ namespace UploadExcelFile.Controllers
         [WebMethod(EnableSession = true)]
         public ActionResult ContactsTable()
         {
+            DateTime myDateTime = DateTime.Now;
+            string sqlformattedDate = myDateTime.ToString("yyyy-MM-dd hh:mm:ss.fff");
+            string batchName = GetBatchName();
             //Creating a new Batch object
             ContactBatch batch = new ContactBatch();
-            batch.BatchName = "Upload";
-            batch.CreatedBy = "Sysytem";
-            batch.DateCreated = DateTime.Now;
+            batch.BatchName = batchName;
+            batch.CreatedBy = "System";
+            batch.DateCreated = Convert.ToDateTime(sqlformattedDate);
 
             //calling the post to ContactBatch table--
             int batchID = ContactDB.GetBatchID(batch);
@@ -129,6 +132,18 @@ namespace UploadExcelFile.Controllers
             contacts = (List<ContactVM>)Session["Upload"];
             ContactDB.PostToDatabase(contacts, batchID);
             return View(contacts);
+        }
+
+        private string GetBatchName()
+        {
+            string batchName;
+            var rand = new Random();
+            ContactBatch batch = new ContactBatch();
+            var newRand = rand.Next(100);
+
+            batchName = batch.BatchName = "Upload - " + newRand;
+
+            return batchName;
         }
     }
 }
