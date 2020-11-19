@@ -121,7 +121,8 @@ namespace UploadExcelFile.Controllers
             batch.BatchName = "Upload";
             batch.CreatedBy = "Sysytem";
             batch.DateCreated = DateTime.Now;
-            //calling the post to ContactBatch table
+
+            //calling the post to ContactBatch table--
             int batchID = ContactDB.GetBatchID(batch);
 
             List<ContactVM> contacts = new List<ContactVM>();
