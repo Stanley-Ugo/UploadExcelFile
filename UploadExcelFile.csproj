@@ -152,6 +152,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContactBatchController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Files\" />
+    <Folder Include="Views\ContactBatch\" />
     <Folder Include="Views\InsertRecords\" />
   </ItemGroup>
   <ItemGroup>
