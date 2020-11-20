@@ -2,20 +2,20 @@
 @model List<ContactBatch>
 
 
-@{ ViewBag.Title = "Index";
+@{ ViewBag.Title = "File Batch";
 
        Layout = "~/Views/Shared/_Layout.cshtml"; 
  }
 
-<h2>Index</h2>
+<h2>File Batch</h2>
 @if (Model.Count() > 0)
 {
 <hr />
 <table class="table table-bordered">
     <tr>
         <td>Batch Name</td>
-        <td>CreatedBy</td>
-        <td>DateCreated</td>
+        <td>Created By</td>
+        <td>Date Created</td>
         <td>Action</td>
 
     </tr>
@@ -26,7 +26,13 @@
     <td>@contact.BatchName</td>
     <td>@contact.CreatedBy</td>
     <td>@contact.DateCreated</td>
-    <td>View | Update | Delete</td>
+    <td><button class="btn btn-default">
+    @Html.ActionLink("View", "GetFileById", "ContactBatch")
+</button> | <button class="btn btn-default">
+    @Html.ActionLink("Edit", "EditById", "ContactBatch")
+</button> | <button class="btn btn-default">
+    @Html.ActionLink("Delete", "DeleteById", "ContactBatch")
+</button></td>
 </tr>
 }
 </table>}
