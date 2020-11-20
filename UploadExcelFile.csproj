@@ -159,6 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ContactBatch.cs" />
+    <Compile Include="Models\ContactBatchDB.cs" />
     <Compile Include="Models\ContactDB.cs" />
     <Compile Include="Models\ContactVM.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -203,10 +204,10 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\Error.cshtml" />
     <Content Include="Views\Contacts\ContactsTable.cshtml" />
+    <Content Include="Views\ContactBatch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Files\" />
-    <Folder Include="Views\ContactBatch\" />
     <Folder Include="Views\InsertRecords\" />
   </ItemGroup>
   <ItemGroup>
