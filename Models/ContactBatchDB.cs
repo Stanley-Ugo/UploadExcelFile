@@ -25,6 +25,7 @@ namespace UploadExcelFile.Models
                     {
                         contactBatches.Add(new ContactBatch
                         {
+                            BatchID = Convert.ToInt32(sdr["BatchID"]),
                             BatchName = sdr["BatchName"].ToString(),
                             DateCreated = Convert.ToDateTime(sdr["DateCreated"]),
                             CreatedBy = sdr["CreatedBy"].ToString()
@@ -34,6 +35,11 @@ namespace UploadExcelFile.Models
             }
 
             return contactBatches;
+        }
+
+        public static List<ContactVM> GetContactByBatchId(int id)
+        {
+
         }
     }
 }

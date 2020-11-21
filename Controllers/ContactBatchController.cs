@@ -17,10 +17,10 @@ namespace UploadExcelFile.Controllers
             return View(contactBatchDBs);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult GetFileById(int id)
         {
-            return View();
+            return View(ContactBatchDB.GetContactByBatchId(id));
         }
     }
 }

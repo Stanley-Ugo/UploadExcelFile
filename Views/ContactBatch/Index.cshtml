@@ -13,6 +13,7 @@
 <hr />
 <table class="table table-bordered">
     <tr>
+        <td>Batch Id</td>
         <td>Batch Name</td>
         <td>Created By</td>
         <td>Date Created</td>
@@ -23,17 +24,21 @@
     @foreach (ContactBatch contact in Model)
     {
 <tr>
+    <td>@contact.BatchID</td>
     <td>@contact.BatchName</td>
     <td>@contact.CreatedBy</td>
     <td>@contact.DateCreated</td>
-    <td><button class="btn btn-default">
-    @Html.ActionLink("View", "GetFileById", "ContactBatch", new { id = contact.BatchID})
-</button> | <button class="btn btn-default">
-    @Html.ActionLink("Edit", "EditById", "ContactBatch")
-</button> | <button class="btn btn-default">
-    @Html.ActionLink("Delete", "DeleteById", "ContactBatch")
-</button></td>
+    <td>
+        <button class="btn btn-default">
+            <span style="color:white">@Html.ActionLink("View", "GetFileById", "ContactBatch", new { id = contact.BatchID }, null)</span>
+        </button> | <button class="btn btn-default">
+            <span style="color:white">@Html.ActionLink("Edit", "EditById", "ContactBatch", new { id = contact.BatchID }, null)</span>
+        </button> | <button class="btn btn-default">
+            <span style="color:white">@Html.ActionLink("Delete", "DeleteById", "ContactBatch", new { id = contact.BatchID }, null)</span>
+        </button>
+    </td>
 </tr>
+    }
+</table>
 }
-</table>}
 
