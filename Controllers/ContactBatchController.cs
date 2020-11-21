@@ -20,7 +20,9 @@ namespace UploadExcelFile.Controllers
         [HttpGet]
         public ActionResult GetFileById(int id)
         {
-            return View(ContactBatchDB.GetContactByBatchId(id));
+            List<ContactVM> contactVM = new List<ContactVM>();
+            contactVM = ContactBatchDB.GetContactByBatchId(id);
+            return View(contactVM);
         }
     }
 }
