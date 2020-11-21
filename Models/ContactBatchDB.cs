@@ -60,7 +60,7 @@ namespace UploadExcelFile.Models
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlParameter paramBatchId = new SqlParameter
                     {
-                        ParameterName = "BatchID",
+                        ParameterName = "@BatchID",
                         Value = id
                     };
                     cmd.Parameters.Add(paramBatchId);
