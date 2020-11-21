@@ -33,6 +33,20 @@
     </table>
 }
 
+@{var batchId = 0;
+
+    foreach (ContactVM contactBatch in Model)
+    {
+        batchId = contactBatch.BatchId;
+    }
+
+    <button class="btn btn-default">
+        <span style="color:white">@Html.ActionLink("Delete Record", "DeletedBatchById", "ContactBatch", new { id = batchId }, null)</span>
+    </button>
+}
+
+
+
 <button class="btn btn-default">
-    <span style="color:white">@Html.ActionLink("Bact To Batches", "Index", "ContactBatch")</span>
+    <span style="color:white">@Html.ActionLink("Back To Batches", "Index", "ContactBatch")</span>
 </button>
