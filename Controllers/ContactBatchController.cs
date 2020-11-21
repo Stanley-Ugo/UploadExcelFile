@@ -16,5 +16,11 @@ namespace UploadExcelFile.Controllers
             contactBatchDBs = ContactBatchDB.GetAllBatches();
             return View(contactBatchDBs);
         }
+
+        [HttpPost]
+        public ActionResult GetFileById(int id)
+        {
+            return View();
+        }
     }
 }

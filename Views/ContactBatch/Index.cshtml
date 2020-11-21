@@ -27,7 +27,7 @@
     <td>@contact.CreatedBy</td>
     <td>@contact.DateCreated</td>
     <td><button class="btn btn-default">
-    @Html.ActionLink("View", "GetFileById", "ContactBatch")
+    @Html.ActionLink("View", "GetFileById", "ContactBatch", new { id = contact.BatchID})
 </button> | <button class="btn btn-default">
     @Html.ActionLink("Edit", "EditById", "ContactBatch")
 </button> | <button class="btn btn-default">
