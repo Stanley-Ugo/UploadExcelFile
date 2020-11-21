@@ -16,21 +16,32 @@ namespace UploadExcelFile.Models
             List<ContactBatch> contactBatches = new List<ContactBatch>();
             using (SqlConnection con = new SqlConnection(connString))
             {
-                SqlCommand cmd = new SqlCommand("spGetAllBatches", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                con.Open();
-                using (SqlDataReader sdr = cmd.ExecuteReader())
+                try
                 {
-                    while (sdr.Read())
+                    SqlCommand cmd = new SqlCommand("spGetAllBatches", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
                     {
-                        contactBatches.Add(new ContactBatch
+                        while (sdr.Read())
                         {
-                            BatchID = Convert.ToInt32(sdr["BatchID"]),
-                            BatchName = sdr["BatchName"].ToString(),
-                            DateCreated = Convert.ToDateTime(sdr["DateCreated"]),
-                            CreatedBy = sdr["CreatedBy"].ToString()
-                        });
+                            contactBatches.Add(new ContactBatch
+                            {
+                                BatchID = Convert.ToInt32(sdr["BatchID"]),
+                                BatchName = sdr["BatchName"].ToString(),
+                                DateCreated = Convert.ToDateTime(sdr["DateCreated"]),
+                                CreatedBy = sdr["CreatedBy"].ToString()
+                            });
+                        }
                     }
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
 
@@ -39,7 +50,7 @@ namespace UploadExcelFile.Models
 
         public static List<ContactVM> GetContactByBatchId(int id)
         {
-
+            string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         }
     }
 }
