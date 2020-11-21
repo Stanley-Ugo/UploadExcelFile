@@ -206,6 +206,7 @@
     <Content Include="Views\Contacts\ContactsTable.cshtml" />
     <Content Include="Views\ContactBatch\Index.cshtml" />
     <Content Include="Views\ContactBatch\GetFileById.cshtml" />
+    <Content Include="Views\ContactBatch\DeleteById.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Files\" />

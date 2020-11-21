@@ -48,5 +48,7 @@ namespace UploadExcelFile.Models
 		public string CustomField2 { get; set; }
 
 		public DateTime CustomDate { get; set; }
-	}
+
+        public int BatchId { get; set; }
+    }
 }
