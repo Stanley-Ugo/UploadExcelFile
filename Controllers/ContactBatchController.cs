@@ -44,7 +44,7 @@ namespace UploadExcelFile.Controllers
         public ActionResult EditById(int id)
         {
             List<ContactVM> contactVM = new List<ContactVM>();
-            contactVM = ContactBatchDB.DeleteContactByBatchId(id);
+            contactVM = ContactBatchDB.EditContactByBatchId(id);
             return View(contactVM);
         }
     }
