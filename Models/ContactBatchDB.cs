@@ -180,7 +180,6 @@ namespace UploadExcelFile.Models
 
         }
 
-        [WebMethod(EnableSession = true)]
         public static List<ContactVM> EditContactByBatchId(int id)
         {
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
@@ -228,6 +227,83 @@ namespace UploadExcelFile.Models
             }
 
             return contactVM;
+        }
+
+        public static void UpdateContactByBatchId(List<ContactVM> contacts, int batchId)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                foreach (ContactVM contact in contacts)
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("spUpdateContactByBatchId", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        SqlParameter paramFirstName = new SqlParameter
+                        {
+                            ParameterName = "@FirstName",
+                            Value = contact.FirstName
+                        };
+                        cmd.Parameters.Add(paramFirstName);
+
+                        SqlParameter paramLastName = new SqlParameter
+                        {
+                            ParameterName = "@LastName",
+                            Value = contact.LastName
+                        };
+                        cmd.Parameters.Add(paramLastName);
+
+                        SqlParameter paramEmail = new SqlParameter
+                        {
+                            ParameterName = "@Email",
+                            Value = contact.Email
+                        };
+                        cmd.Parameters.Add(paramEmail);
+
+                        SqlParameter paramTelephone = new SqlParameter
+                        {
+                            ParameterName = "@Telephone",
+                            Value = contact.Telephone
+                        };
+                        cmd.Parameters.Add(paramTelephone);
+
+                        SqlParameter paramMobile = new SqlParameter
+                        {
+                            ParameterName = "@Mobile",
+                            Value = contact.Mobile
+                        };
+                        cmd.Parameters.Add(paramMobile);
+
+                        SqlParameter paramCompanyID = new SqlParameter
+                        {
+                            ParameterName = "@CompanyID",
+                            Value = contact.CompanyID
+                        };
+                        cmd.Parameters.Add(paramCompanyID);
+
+                        SqlParameter paramBatchID = new SqlParameter
+                        {
+                            ParameterName = "@BatchID",
+                            Value = batchId
+                        };
+                        cmd.Parameters.Add(paramBatchID);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+
+            }
         }
     }
 }
