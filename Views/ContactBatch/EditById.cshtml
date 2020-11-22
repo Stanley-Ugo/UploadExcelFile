@@ -1,7 +1,7 @@
 ﻿@using UploadExcelFile.Models
 @model List<ContactVM>
 @{
-    ViewBag.Title = "DeleteFileById";
+    ViewBag.Title = "EditFileById";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -33,20 +33,4 @@
     </table>
 }
 
-@{int batchId = 0;
-
-    foreach (ContactVM contactBatch in Model)
-    {
-        batchId = contactBatch.BatchId;
-    }
-
-    <button class="btn btn-default">
-        <span style="color:white">@Html.ActionLink("Delete Record", "DeletedBatchById", "ContactBatch", new { id = batchId }, null)</span>
-    </button>
-}
-
-
-
-<button class="btn btn-default">
-    <span style="color:white">@Html.ActionLink("Back To Batches", "Index", "ContactBatch")</span>
-</button>
+<h2>Edit Batch</h2>
