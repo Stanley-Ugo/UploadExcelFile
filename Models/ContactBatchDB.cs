@@ -5,9 +5,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Services;
+using System.Web.SessionState;
 
 namespace UploadExcelFile.Models
 {
+    [SessionState(SessionStateBehavior.Required)]
     public class ContactBatchDB
     {
         public static List<ContactBatch> GetAllBatches()
@@ -176,6 +180,7 @@ namespace UploadExcelFile.Models
 
         }
 
+        [WebMethod(EnableSession = true)]
         public static List<ContactVM> EditContactByBatchId(int id)
         {
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;

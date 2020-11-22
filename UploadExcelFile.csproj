@@ -208,6 +208,7 @@
     <Content Include="Views\ContactBatch\GetFileById.cshtml" />
     <Content Include="Views\ContactBatch\DeleteById.cshtml" />
     <Content Include="Views\ContactBatch\DeletedBatchById.cshtml" />
+    <Content Include="Views\ContactBatch\EditById1.cshtml" />
     <Content Include="Views\ContactBatch\EditById.cshtml" />
   </ItemGroup>
   <ItemGroup>

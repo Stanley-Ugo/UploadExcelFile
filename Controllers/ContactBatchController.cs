@@ -45,6 +45,7 @@ namespace UploadExcelFile.Controllers
         {
             List<ContactVM> contactVM = new List<ContactVM>();
             contactVM = ContactBatchDB.EditContactByBatchId(id);
+            Session["BatchId"] = ContactBatchDB.EditContactByBatchId(id);
             return View(contactVM);
         }
     }
