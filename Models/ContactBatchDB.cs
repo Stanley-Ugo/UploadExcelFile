@@ -175,5 +175,54 @@ namespace UploadExcelFile.Models
             }
 
         }
+
+        public static List<ContactVM> EditContactByBatchId(int id)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            List<ContactVM> contactVM = new List<ContactVM>();
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spGetContactByBatches", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlParameter paramBatchId = new SqlParameter
+                    {
+                        ParameterName = "@BatchID",
+                        Value = id
+                    };
+                    cmd.Parameters.Add(paramBatchId);
+
+                    con.Open();
+
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            contactVM.Add(new ContactVM
+                            {
+                                FirstName = sdr["FirstName"].ToString(),
+                                LastName = sdr["LastName"].ToString(),
+                                Email = sdr["Email"].ToString(),
+                                Telephone = sdr["Telephone"].ToString(),
+                                Mobile = sdr["Mobile"].ToString(),
+                                CompanyID = Convert.ToInt32(sdr["CompanyID"]),
+                                BatchId = Convert.ToInt32(sdr["BatchID"])
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+
+            return contactVM;
+        }
     }
 }

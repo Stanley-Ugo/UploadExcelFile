@@ -39,5 +39,13 @@ namespace UploadExcelFile.Controllers
             ContactBatchDB.DeleteFileByBatchId(id);
             return View();
         }
+
+        [HttpGet]
+        public ActionResult EditById(int id)
+        {
+            List<ContactVM> contactVM = new List<ContactVM>();
+            contactVM = ContactBatchDB.DeleteContactByBatchId(id);
+            return View(contactVM);
+        }
     }
 }
