@@ -151,15 +151,21 @@ namespace UploadExcelFile.Controllers
         [WebMethod(EnableSession = true)]
         public ActionResult UpdateByBatchId(ContactVM contactVM)
         {
-            ContactVM batchId = new ContactVM();
-            batchId = (ContactVM)Session["BatchId"];
-            int stronger = batchId.BatchId;
-
+            int batchID = 0;
+            List<ContactVM> batchId = new List<ContactVM>();
+            batchId = (List<ContactVM>)Session["BatchId"];
+            foreach(ContactVM contactsBatch in batchId)
+            {
+                batchID = contactsBatch.BatchId;
+            }
+            
             //Session object
             List<ContactVM> contacts = new List<ContactVM>();
             contacts = (List<ContactVM>)Session["ReUploadBatch"];
 
+            ContactBatchDB.UpdateContactByBatchId(contacts, batchID);
 
+            return View();
         }
     }
 }

@@ -211,7 +211,7 @@ namespace UploadExcelFile.Models
                                 Telephone = sdr["Telephone"].ToString(),
                                 Mobile = sdr["Mobile"].ToString(),
                                 CompanyID = Convert.ToInt32(sdr["CompanyID"]),
-                                BatchId = Convert.ToInt32(sdr["BatchID"])
+                                BatchId = Convert.ToInt32(sdr["BatchID"]),
                             });
                         }
                     }

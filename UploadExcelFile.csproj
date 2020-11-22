@@ -210,8 +210,8 @@
     <Content Include="Views\ContactBatch\DeletedBatchById.cshtml" />
     <Content Include="Views\ContactBatch\EditById.cshtml" />
     <Content Include="Views\ContactBatch\UpdateById.cshtml" />
-    <Content Include="Views\ContactBatch\ReUploadBatch1.cshtml" />
     <Content Include="Views\ContactBatch\ReUploadBatch.cshtml" />
+    <Content Include="Views\ContactBatch\UpdateByBatchId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Files\" />
