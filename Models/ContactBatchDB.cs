@@ -232,7 +232,7 @@ namespace UploadExcelFile.Models
         public static void UpdateContactByBatchId(List<ContactVM> contacts, int batchId)
         {
             //Calling the DeleteByBatchId Method before updating record
-
+            ContactBatchDB.DeleteByBatchId(batchId);
 
 
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
