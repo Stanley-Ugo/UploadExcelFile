@@ -27,9 +27,6 @@
         <th>
             <strong>Company ID</strong>
         </th>
-        <th>
-            <strong>Batch ID</strong>
-        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -53,13 +50,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CompanyID)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BatchId)
-            </td>
         </tr>
     }
 </table>
 <br />
 <button class="btn btn-default">
     <span style="color:white">@Html.ActionLink("Re-Upload", "ReUploadBatch", "ContactBatch")</span>
+</button>
+<br />
+<br />
+<button class="btn btn-default">
+    <span style="color:white">@Html.ActionLink("Back To Batches", "Index", "ContactBatch")</span>
 </button>
