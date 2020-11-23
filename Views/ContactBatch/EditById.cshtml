@@ -5,6 +5,18 @@
 }
 
 <h2><strong>Batch Details</strong></h2>
+<br />
+
+@{ 
+    int label = 0;
+}
+
+@foreach(var item in Model)
+{
+    label = item.BatchId;
+}
+<br />
+<Label><strong>Batch</strong></Label> <Label><strong>Upolad - @label</strong></Label>
 
 
 <table class="table table-bordered">
