@@ -231,6 +231,10 @@ namespace UploadExcelFile.Models
 
         public static void UpdateContactByBatchId(List<ContactVM> contacts, int batchId)
         {
+            //Calling the DeleteByBatchId Method before updating record
+
+
+
             string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(connString))
             {
@@ -303,6 +307,37 @@ namespace UploadExcelFile.Models
                     }
                 }
 
+            }
+        }
+
+        private static void DeleteByBatchId(int batchId)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("spDeleteContactByBatchId", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    SqlParameter paramBatchID = new SqlParameter
+                    {
+                        ParameterName = "@BatchID",
+                        Value = batchId
+                    };
+                    cmd.Parameters.Add(paramBatchID);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
         }
     }
